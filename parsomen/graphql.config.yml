@@ -1,2 +1,2 @@
 schema: http://localhost:5000/graphql
-documents: 'parsomen/sorgular/*.{graphql,gql}'
+documents: 'parsomen/graph/*.{graphql,gql}'

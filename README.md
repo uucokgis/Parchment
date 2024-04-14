@@ -71,7 +71,7 @@ Parsomen:
 ParsomenAyar:
 
     _id: ObjectId
-    parsomenId: number
+    parsomenNo: number
     sonYer: number,
     cizimAyarlari: {
         renk: hex | String

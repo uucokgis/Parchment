@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_graphql import GraphQLView
 
-from parsomen.sorgular.sorgu import sorgu_semasi
+from parsomen.graph.blok import blok_sema
 
 app = Flask(__name__)
 app.debug = True
@@ -23,7 +23,7 @@ Parsomen title'lari veya bloklarin metin olanlarındaki verileri arayacak. Tipik
 
 # Add the GraphQL endpoint to your Flask app
 app.add_url_rule('/graphql',
-                 view_func=GraphQLView.as_view('graphql', schema=sorgu_semasi, graphiql=True))
+                 view_func=GraphQLView.as_view('graphql', schema=blok_sema, graphiql=True))
 
 
 if __name__ == '__main__':
