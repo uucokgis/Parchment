@@ -12,13 +12,6 @@ class Base(ABC):
     duzenlenmeTarihi: datetime
 
 
-@dataclass
-class Blok(Base):
-    icerik: dict
-    sira: int
-    yer: int
-
-
 class IcerikTipi(enum.Enum):
     Raster = 'Raster'
     Metin = 'Metin'
@@ -28,6 +21,15 @@ class IcerikTipi(enum.Enum):
 class Icerik:
     tip: IcerikTipi
     data: str
+
+
+@dataclass
+class Blok(Base):
+    # parsomenNo: int
+    # hamurNo: int
+    icerik: Icerik
+    sira: int
+    yer: int
 
 
 @dataclass

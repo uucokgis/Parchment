@@ -1,9 +1,9 @@
+from datetime import datetime
+
 from graphene import ObjectType, String, Int, ID, Field, Boolean, InputObjectType, List, DateTime
 
-from .classes import *
 
-
-class CizimAyarlariSema(CizimAyarlari, ObjectType):
+class CizimAyarlariSema(ObjectType):
     renk = String(description="Renk kodunu temsil eder")
     buyukluk = Int(description="Çizim büyüklüğünü temsil eder")
     font = String(description="Font ismini temsil eder")
@@ -13,7 +13,7 @@ class MetinAyarlariSema(CizimAyarlariSema):
     pass
 
 
-class ParsomenAyarSema(ParsomenAyar, ObjectType):
+class ParsomenAyarSema(ObjectType):
     _id = ID(required=True)
     parsomenNo = Int(required=True)
     sonYer = Int(default_value=-1)
@@ -23,20 +23,25 @@ class ParsomenAyarSema(ParsomenAyar, ObjectType):
     satirliMi = Boolean()
 
 
-class ParsomenAyarInputSema(ParsomenAyar, InputObjectType):
+class ParsomenAyarInputSema(InputObjectType):
     pass
 
 
-class HamurSema(Hamur, ObjectType):
+class HamurSema(ObjectType):
     _id = ID()
     parsomenNo = Int(description="Parsomen ID")
     bloklar = List(Int, description="Doğru sırayla Blok id'leri")
     siraNo = Int(description="Sıra numarası")
 
 
-class BlokSema(Blok, ObjectType):
+class IcerikSema(ObjectType):
+    tipi = String(required=True)
+    data = String(required=True)
+
+
+class BlokSema(ObjectType):
     _id = ID(required=True)
-    icerik = Field(Icerik, required=True)
+    icerik = Field(IcerikSema, required=True, name='icerik')
     sira = Int(required=True)
     yer = Int(required=True)
     uretilmeTarihi = DateTime(default_value=datetime.now())

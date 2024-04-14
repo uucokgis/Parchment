@@ -1,13 +1,12 @@
 from datetime import datetime
 
-from db.blok import blok_koleksiyonu
-from db.hamur import hamur_koleksiyonu
-from db.parsomen import parsomen_koleksiyonu
-from db.parsomen_ayar import parsomen_ayar_koleksiyonu
+from parsomen.db.collections import BlokCollection, HamurCollection, ParsomenCollection, ParsomenAyarCollection
 
-blok_koleksiyonu.insert_many([
+BlokCollection.collection.insert_many([
     {
         # "_id": 1,
+        "parsomenNo": 1,
+        "hamurNo": 1,
         "icerik": {"tipi": "Text", "data": "Example Data"},
         "sira": 1,
         "yer": 1,
@@ -15,7 +14,8 @@ blok_koleksiyonu.insert_many([
         "duzenlenmeTarihi": datetime.now(),
     },
     {
-        # "_id": 2,
+        "parsomenNo": 1,
+        "hamurNo": 1,
         "icerik": {"tipi": "Text", "data": "Example Data"},
         "sira": 2,
         "yer": 1,
@@ -25,7 +25,7 @@ blok_koleksiyonu.insert_many([
 ])
 
 # Örnek bir Hamur ekleme
-hamur_koleksiyonu.insert_one({
+HamurCollection.collection.insert_one({
     # "_id": 1,
     "parsomenNo": 1,
     "bloklar": [1, 2],  # Blok id'leri sıralı gelecek
@@ -33,14 +33,14 @@ hamur_koleksiyonu.insert_one({
 })
 
 # Örnek bir Parsomen ekleme
-parsomen_koleksiyonu.insert_one({
+ParsomenCollection.collection.insert_one({
     # "_id": 1,
     "baslik": "Example Title",
     "hamurlar": [1],  # Hamur id'leri sıralı gelecek
 })
 
 # Örnek bir ParsomenAyar ekleme
-parsomen_ayar_koleksiyonu.insert_one({
+ParsomenAyarCollection.collection.insert_one({
     # "_id": 1,
     "parsomenNo": 1,
     "sonYer": 1,
